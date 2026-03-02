@@ -1,0 +1,101 @@
+<!-- ═══════════════════════════════════════════════ -->
+<!-- GHL BODY CODE — Paste in Page Settings → Body  -->
+<!-- ═══════════════════════════════════════════════ -->
+
+<script>
+    (function () {
+        "use strict";
+
+        // Data
+        const WHY_DATA = [
+            { icon: "award", title: "4 Generations of Excellence", desc: "Family-owned since 1989 with over 37 years of design-build expertise. We bring generational knowledge and passion to every single project." },
+            { icon: "shield", title: "Love Your Yard Guarantee", desc: "\"You'll love your outdoor space — we guarantee it.\" Don't like a plant? We'll replace it. Don't like a color? We'll repaint. We won't stop until you love it." },
+            { icon: "users", title: "Dedicated Project Foreman", desc: "The same foreman and crew stay with your project from start to finish. No rotating teams, no miscommunication — just consistent, quality craftsmanship." },
+            { icon: "palette", title: "Custom Digital Design", desc: "Our designers create a scaled, colored digital rendering of your concept that's yours to keep — so you can see your dream space before we break ground." },
+            { icon: "calendar-check", title: "On-Time, On-Budget", desc: "We hit our deadlines and respect your investment. Transparent pricing, clear timelines, and constant communication throughout every phase." },
+            { icon: "building", title: "Residential & Commercial", desc: "From dream backyards to commercial properties and public works — our 6 specialized crews handle projects of every scale with precision." }
+        ];
+        const PROCESS_DATA = [
+            { num: "01", icon: "compass", title: "Free Consultation", desc: "One of our designers visits your property to discuss style, materials, and budget. We listen to your vision and assess the site in person." },
+            { num: "02", icon: "sparkles", title: "Custom Design", desc: "We create a digital, scaled, colored rendering of your concept. Refine every detail until it's exactly what you envisioned — the design is yours to keep." },
+            { num: "03", icon: "tree-pine", title: "Expert Build", desc: "Your dedicated foreman and crew handle every aspect — from permits to planting. Same team, start to finish, ensuring no detail is missed." },
+            { num: "04", icon: "leaf", title: "Enjoy & Maintain", desc: "Walk through your transformed space with confidence, backed by our satisfaction guarantee. We also offer ongoing maintenance to keep it thriving." }
+        ];
+        const SERVICES_DATA = [
+            { title: "Landscape Design", desc: "Collaborative, consultative design process that translates your vision into a detailed digital rendering. We consider your lifestyle, architecture, and outdoor goals to create spaces that feel natural and purposeful.", img: "https://scarlettslandscaping.com/wp-content/uploads/2025/12/IMG_0162-scaled-e1766444867863-400x400.jpeg", tags: ["Digital Rendering", "Consultative", "Yours to Keep"] },
+            { title: "Hardscape & Masonry", desc: "Custom patios, walkways, retaining walls, outdoor kitchens, and fire features — expertly crafted from premium stone, pavers, and concrete that stand the test of time.", img: "https://scarlettslandscaping.com/wp-content/uploads/2017/05/DSC_0847-400x400.jpg", tags: ["Stone & Pavers", "Retaining Walls", "Outdoor Kitchens"] },
+            { title: "Irrigation & Drainage", desc: "Smart irrigation systems, drip lines, sprinkler installation, and greywater systems designed for Southern California's climate. Cut water waste while keeping your landscape lush.", img: "https://images.unsplash.com/photo-1416879595882-3373a0480b5b?auto=format&fit=crop&w=800&q=80", tags: ["Smart Controllers", "Drip Systems", "Greywater"] },
+            { title: "Landscape Lighting", desc: "Transform your outdoor space after dark with custom landscape lighting that highlights architectural features, paths, and plantings — creating ambiance and security.", img: "https://scarlettslandscaping.com/wp-content/uploads/2025/11/40-web-or-mls-UpmarketMedia_839View-32-400x400.jpg", tags: ["LED Systems", "Path Lighting", "Accent Design"] }
+        ];
+        const TESTIMONIALS_DATA = [
+            { name: "Satisfied Homeowner", role: "Ventura Resident", content: "Scarlett's took our bland backyard and turned it into an absolute oasis. The design team was creative yet practical, and the build crew was professional every single day. We use our outdoor space more than our living room now!", project: "Complete Backyard Redesign" },
+            { name: "Happy Client", role: "Santa Barbara County", content: "From the initial consultation to the final walkthrough, everything was handled with professionalism. Our foreman stayed with us the entire project and made sure every detail was perfect. The hardscape work is stunning.", project: "Hardscape & Patio" },
+            { name: "Repeat Customer", role: "Conejo Valley Homeowner", content: "We've used Scarlett's for two projects now — first our front yard, then a complete backyard redesign with a pool surround. Both times they exceeded expectations. The family-owned difference really shows in the quality of care.", project: "Pool Surround & Planting" },
+            { name: "Commercial Client", role: "Business Property Owner", content: "As a commercial property owner, appearance matters. Scarlett's maintains our grounds beautifully and completed a major landscape overhaul that dramatically improved our property's curb appeal. Highly professional team.", project: "Commercial Landscape" }
+        ];
+        const FAQS_DATA = [
+            { q: "How quickly can you start my project?", a: "We typically schedule consultations within a week, and most design-build projects begin within 3-4 weeks of design approval. We have 6 active crews, so we can accommodate projects of all sizes." },
+            { q: "What does the free consultation include?", a: "One of our designers visits your property to discuss all aspects — design style, materials, and budget. We'll assess the site and provide a clear picture of what's possible for your space." },
+            { q: "Do you handle both design and build?", a: "Yes — we're a full design-build firm. We handle everything from the initial digital rendering through construction, planting, lighting, and irrigation. Your same foreman and crew stay from start to finish." },
+            { q: "What areas do you serve?", a: "We serve Ventura County, Santa Barbara County, and the Conejo Valley. We have dedicated teams for each service area to ensure fast, localized response." },
+            { q: "What's your satisfaction guarantee?", a: "\"You'll love your outdoor space — we guarantee it.\" If something isn't right, we'll fix it — whether it's replacing a plant, repainting a patio cover, or redoing lighting placement. We want you to love every detail." },
+            { q: "Do you offer maintenance after the build?", a: "Absolutely. We offer ongoing maintenance programs to keep your landscape thriving year-round. Many of our design-build clients transition into maintenance relationships for long-term care." }
+        ];
+        const AREAS = ["Ventura", "Santa Barbara", "Camarillo", "Conejo Valley", "Ojai", "Thousand Oaks", "Carpinteria", "Malibu", "Oxnard", "Westlake Village"];
+
+        // Form handler
+        window.handleFormSubmit = function (e) {
+            e.preventDefault();
+            var form = document.getElementById('contactForm');
+            var success = document.getElementById('formSuccess');
+            form.style.display = 'none';
+            success.style.display = 'block';
+            // In GHL, this would be replaced by the native form action
+        }
+
+        // Render dynamic sections
+        function renderCards() {
+            document.getElementById('whyCards').innerHTML = WHY_DATA.map(d => `<div class="card fade-up"><div class="card-icon"><i data-lucide="${d.icon}" style="width:28px;height:28px;stroke-width:1.5"></i></div><h3>${d.title}</h3><p>${d.desc}</p></div>`).join('');
+            document.getElementById('processCards').innerHTML = PROCESS_DATA.map((d, i) => `<div class="process-card fade-up"><span class="process-num">${d.num}</span><div style="position:relative;z-index:1"><div class="process-icon"><i data-lucide="${d.icon}" style="width:32px;height:32px;stroke-width:1.5"></i></div><h3 style="font-size:1.5rem;font-style:italic;margin-bottom:1rem">${d.title}</h3><p style="color:rgba(18,31,18,.5);line-height:1.6">${d.desc}</p></div>${i < 3 ? '<div style="display:none" class="arrow-hint"><i data-lucide="arrow-right" style="width:24px;height:24px;color:rgba(18,31,18,.1)"></i></div>' : ''}</div>`).join('');
+            document.getElementById('serviceCards').innerHTML = SERVICES_DATA.map(d => `<div class="service-item fade-up"><div class="service-img-wrap"><img src="${d.img}" alt="${d.title}" referrerpolicy="no-referrer" loading="lazy"/><div class="service-img-overlay"></div></div><div class="service-header"><div><h3>${d.title}</h3><p>${d.desc}</p><div class="service-tags">${d.tags.map(t => `<span class="tag"><i data-lucide="check-circle-2" style="width:12px;height:12px"></i> ${t}</span>`).join('')}</div></div><a href="#contact" aria-label="Get a quote for ${d.title}" class="service-arrow"><i data-lucide="arrow-right" style="width:20px;height:20px;stroke-width:1"></i></a></div></div>`).join('');
+            document.getElementById('testimonialCards').innerHTML = TESTIMONIALS_DATA.map(d => `<div class="testimonial fade-up"><div class="quote-icon"><i data-lucide="quote" style="width:40px;height:40px;stroke-width:1"></i></div><blockquote>"${d.content}"</blockquote><div class="testimonial-footer"><div class="testimonial-author"><div class="author-avatar">${d.name[0]}</div><div><p class="author-name">${d.name}</p><p class="author-role">${d.role}</p></div></div><span class="project-tag">${d.project}</span></div></div>`).join('');
+            document.getElementById('areaTags').innerHTML = AREAS.map(a => `<span class="area-tag"><i data-lucide="map-pin" style="width:16px;height:16px"></i> ${a}</span>`).join('');
+            document.getElementById('faqList').innerHTML = FAQS_DATA.map((d, i) => `<div class="faq-item${i === 0 ? ' open' : ''}" onclick="toggleFaq(this)"><button class="faq-btn" aria-expanded="${i === 0}"><span>${d.q}</span><div class="faq-chevron"><i data-lucide="chevron-down" style="width:20px;height:20px;stroke-width:1"></i></div></button><div class="faq-answer"><p>${d.a}</p></div></div>`).join('');
+            lucide.createIcons();
+        }
+
+        window.toggleFaq = function (el) {
+            const wasOpen = el.classList.contains('open');
+            document.querySelectorAll('.faq-item').forEach(f => { f.classList.remove('open'); f.querySelector('.faq-btn').setAttribute('aria-expanded', 'false') });
+            if (!wasOpen) { el.classList.add('open'); el.querySelector('.faq-btn').setAttribute('aria-expanded', 'true') }
+        }
+
+        function initScroll() {
+            const nav = document.getElementById('navbar');
+            const bar = document.getElementById('stickyBar');
+            const heroBg = document.getElementById('heroBg');
+            window.addEventListener('scroll', () => {
+                const y = window.scrollY;
+                nav.classList.toggle('scrolled', y > 50);
+                bar.classList.toggle('show', y > 600);
+                if (heroBg) heroBg.style.transform = 'scale(1.1) translateY(' + y * 0.4 + 'px)';
+            }, { passive: true });
+        }
+
+        function initAnimations() {
+            const obs = new IntersectionObserver((entries) => {
+                entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('visible'); obs.unobserve(e.target) } });
+            }, { threshold: 0.1, rootMargin: '-50px' });
+            document.querySelectorAll('.fade-up').forEach(el => obs.observe(el));
+        }
+
+        document.addEventListener('DOMContentLoaded', () => {
+            var yearEl = document.getElementById('footerYear');
+            if (yearEl) yearEl.textContent = new Date().getFullYear();
+            renderCards();
+            initScroll();
+            setTimeout(initAnimations, 100);
+        });
+
+    })();
+</script>
